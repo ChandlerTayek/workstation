@@ -24,7 +24,15 @@ My development environment for platform engineering on Ubuntu (WSL): shell confi
 | `jira.sh` | Atlassian CLI token expiry reminder and guided renewal |
 | `help.sh` | `mycmds`, a searchable list of every custom command |
 
-**🧰 Tools (`mise/config.toml`)**: kubectl, helm, flux, terraform, tflint, shellcheck, and hadolint, pinned globally and switchable per project.
+**🧰 Tools (`mise/config.toml`)**, pinned globally and switchable per project:
+
+| Area | Tools |
+|---|---|
+| Kubernetes | kubectl, helm, flux, kubeconform |
+| Infrastructure | terraform, tflint |
+| Go | go, golangci-lint |
+| Linting | shellcheck, hadolint, actionlint, zizmor |
+| Utilities | task, yq |
 
 **🧩 VS Code (`vscode/`)**: extension lists for the WSL and Windows sides, plus reference settings.
 
