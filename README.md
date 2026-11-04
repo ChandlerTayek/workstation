@@ -22,6 +22,7 @@ My development environment for platform engineering on Ubuntu (WSL): shell confi
 | `terraform.sh` | Shared provider cache, `tfcheck` (fmt, validate, tflint), `tfp`/`tfa` with a prod apply guard |
 | `git.sh` | Short aliases, branch picker, merged-branch cleanup, GitHub Actions watcher |
 | `jira.sh` | Atlassian CLI token expiry reminder and guided renewal |
+| `help.sh` | `mycmds`, a searchable list of every custom command |
 
 **🧰 Tools (`mise/config.toml`)**: kubectl, helm, flux, terraform, tflint, shellcheck, and hadolint, pinned globally and switchable per project.
 
@@ -60,49 +61,57 @@ All commands that take an optional name open an fzf picker when you leave the na
 
 | Command | Does |
 |---|---|
-| `awsl` | Log in to AWS SSO using the session in `AWS_SSO_SESSION` |
-| `awsp [profile]` | Switch the active AWS profile; tab completes profile names |
-| `awsr <region>` | Switch the active region |
-| `awsx` | Clear the active profile and any exported credentials |
-| `awswho` | Show which account and role you're currently using |
-| `ecrlogin` | Log Docker into ECR for the current account and region |
+| `awsl` | Log in to AWS SSO (once a day) |
+| `awsp [profile]` | Switch AWS profile: `awsp <name>`, or pick with fzf |
+| `awsx` | Clear the active AWS profile and credentials |
+| `awswho` | Show the current AWS account and role |
+| `awsr <region>` | Switch AWS region: `awsr <region>` |
+| `ecrlogin` | Log Docker into ECR for the current account |
 
 ### ☸️ Kubernetes (`k8s.sh`)
 
 | Command | Does |
 |---|---|
-| `k` | Short for `kubectl`, with tab completion |
-| `ekscfg <cluster>` | Add an EKS cluster to kubeconfig, named `<profile>-<cluster>` |
-| `kctx [context]` | Switch kube context |
-| `kns [namespace]` | Switch the default namespace for the current context |
-| `kgp` | `kubectl get pods` |
-| `kl <pod>` | Follow a pod's logs (`kubectl logs -f`) |
+| `k` | Short for kubectl |
+| `ekscfg <cluster>` | Add an EKS cluster to kubeconfig: `ekscfg <cluster>` |
+| `kctx [context]` | Switch kube context: `kctx <name>`, or pick with fzf |
+| `kns [namespace]` | Switch namespace: `kns <name>`, or pick with fzf |
+| `kgp` | List pods in the current namespace |
+| `kl <pod>` | Follow a pod's logs: `kl <pod>` |
 
 ### 🏗️ Terraform (`terraform.sh`)
 
 | Command | Does |
 |---|---|
-| `tf` | Short for `terraform` |
-| `tfcheck` | Format, validate, and lint (tflint) the current directory |
-| `tfp [args]` | Plan to a saved `tfplan` file |
-| `tfa` | Apply the saved plan; asks you to type `prod` when a prod profile is active 🚨 |
+| `tf` | Short for terraform |
+| `tfcheck` | Format, validate, and lint this directory |
+| `tfp [args]` | Plan to a tfplan file for review |
+| `tfa` | Apply tfplan (asks to confirm on prod) 🚨 |
 
 ### 🌿 Git and GitHub (`git.sh`)
 
 | Command | Does |
 |---|---|
-| `gs` | Short status with branch info |
-| `gl` | Compact graph of the last 20 commits |
-| `gd` | `git diff` |
-| `gco [branch]` | Switch branches |
-| `gclean` | Delete local branches already merged into the default branch 🧹 |
-| `ghw` | Watch the latest GitHub Actions run for the current branch 👀 |
+| `gs` | Show short git status with branch info |
+| `gl` | Show a compact graph of the last 20 commits |
+| `gd` | Show unstaged changes |
+| `gco [branch]` | Switch branch: `gco <branch>`, or pick with fzf |
+| `gclean` | Delete local branches already merged 🧹 |
+| `ghw` | Watch the latest Actions run for this branch 👀 |
 
 ### 🎫 Jira (`jira.sh`)
 
 | Command | Does |
 |---|---|
-| `jirarenew` | Walk through creating and saving a new Atlassian CLI token |
+| `jirarenew` | Create and save a new Atlassian CLI token |
+
+### 🔎 Help (`help.sh`)
+
+| Command | Does |
+|---|---|
+| `mycmds` | List my custom commands with descriptions |
+
+Every command carries its description as a trailing comment on its definition line, and `mycmds` reads those comments, so this table and the terminal stay in sync. Pipe it through fzf to search: `mycmds | fzf`.
 
 ### ⌨️ Keyboard shortcuts (fzf)
 
