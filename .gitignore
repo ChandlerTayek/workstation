@@ -1,0 +1,5 @@
+# Machine-specific and generated files that must never be committed
+bash/bashrc.local
+*.bak.*
+.envrc
+tfplan

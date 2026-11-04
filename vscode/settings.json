@@ -1,0 +1,23 @@
+{
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.viewSessions.orientation": "stacked",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "claudeCode.preferredLocation": "panel",
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "aws.cloudformation.telemetry.enabled": true,
+    "editor.formatOnSave": true,
+    "[python]": { "editor.defaultFormatter": "charliermarsh.ruff" },
+    "[terraform]": { "editor.defaultFormatter": "hashicorp.terraform" },
+    "[yaml]": { "editor.defaultFormatter": "redhat.vscode-yaml" },
+    "files.associations": {
+    "**/templates/*.yaml": "helm",
+    "**/templates/*.tpl": "helm"
+    }
+}

@@ -1,0 +1,8 @@
+# shellcheck shell=bash
+# Machine and company specific settings. install.sh copies this to
+# ~/.bashrc.local on first run. That copy is never committed.
+
+export AWS_SSO_SESSION=""        # sso-session name from ~/.aws/config
+export AWS_SSO_CHECK_PROFILE=""  # any profile that uses that session
+export ACLI_SITE=""              # e.g. yoursite.atlassian.net
+export ACLI_EMAIL=""             # your Atlassian login email

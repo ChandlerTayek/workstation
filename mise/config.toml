@@ -1,0 +1,8 @@
+[tools]
+flux2 = "2"
+hadolint = "latest"
+helm = "3"
+kubectl = "1.35"
+shellcheck = "latest"
+terraform = "1"
+tflint = "latest"
