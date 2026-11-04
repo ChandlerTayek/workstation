@@ -9,22 +9,20 @@ __aws_ps1() {
   fi
 }
 case "$PS1" in
-  *__aws_ps1*) ;;                      # already added, don't stack it
+  *__aws_ps1*) ;;  # already added, don't stack it
   *) PS1='$(__aws_ps1)'"$PS1" ;;
 esac
 
-awsl() { aws sso login --sso-session "${AWS_SSO_SESSION:?Set AWS_SSO_SESSION in ~/.bashrc.local}"; }  # log in once per day
-# Switch profile: awsp <name>, or just awsp for a fuzzy picker
-awsp() {
+awsl() { aws sso login --sso-session "${AWS_SSO_SESSION:?Set AWS_SSO_SESSION in ~/.bashrc.local}"; }  # Log in to AWS SSO (once a day)
+awsp() {  # Switch AWS profile: awsp <name>, or pick with fzf
   local p="${1:-$(aws configure list-profiles | fzf --prompt='aws profile> ')}"
   [ -n "$p" ] && export AWS_PROFILE="$p"
 }
-awsx() { unset AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN; }  # clear everything
-awswho() { aws sts get-caller-identity; }           # who am I right now
-awsr() { export AWS_REGION="$1"; }                  # switch region
+awsx() { unset AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN; }  # Clear the active AWS profile and credentials
+awswho() { aws sts get-caller-identity; }  # Show the current AWS account and role
+awsr() { export AWS_REGION="$1"; }  # Switch AWS region: awsr <region>
 
-# Log Docker into the current account's ECR
-ecrlogin() {
+ecrlogin() {  # Log Docker into ECR for the current account
   local acct region
   acct=$(aws sts get-caller-identity --query Account --output text) || return
   region=${AWS_REGION:-$(aws configure get region)}

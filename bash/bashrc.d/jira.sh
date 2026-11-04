@@ -16,7 +16,7 @@ __acli_token_check() {
 }
 __acli_token_check
 
-jirarenew() {
+jirarenew() {  # Create and save a new Atlassian CLI token
   : "${ACLI_SITE:?Set ACLI_SITE in ~/.bashrc.local}"
   : "${ACLI_EMAIL:?Set ACLI_EMAIL in ~/.bashrc.local}"
   local token days

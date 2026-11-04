@@ -1,14 +1,13 @@
 # shellcheck shell=bash
 # Terraform shortcuts, shared provider cache, and a prod apply guard
 
-alias tf=terraform
+alias tf=terraform  # Short for terraform
 
 # Download each provider once and reuse it across every project and account
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 mkdir -p "$TF_PLUGIN_CACHE_DIR"
 
-# Format, validate, and lint the current directory
-tfcheck() {
+tfcheck() {  # Format, validate, and lint this directory
   terraform fmt -recursive || return
   terraform validate || return
   if command -v tflint >/dev/null; then
@@ -16,11 +15,9 @@ tfcheck() {
   fi
 }
 
-# Plan to a saved file so apply runs exactly what you reviewed
-tfp() { terraform plan -out=tfplan "$@"; }
+tfp() { terraform plan -out=tfplan "$@"; }  # Plan to a tfplan file for review
 
-# Apply the saved plan; requires typing 'prod' when a prod profile is active
-tfa() {
+tfa() {  # Apply tfplan (asks to confirm on prod)
   if [[ $AWS_PROFILE == *prod* ]]; then
     local ans
     read -rp "Applying to PROD ($AWS_PROFILE). Type 'prod' to continue: " ans
